@@ -1,0 +1,10 @@
+# dependencies
+**/node_modules
+
+# Cypress artifacts
+**/cypress/screenshots
+**/cypress/videos
+**/cypress/downloads
+
+## Environment variables
+**/cypress.env.json

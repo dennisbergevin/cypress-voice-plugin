@@ -1,0 +1,31 @@
+{
+  "name": "cypress-voice-plugin",
+  "version": "1.0.0",
+  "description": "Voice plugin for the Cypress Test Runner",
+  "main": "./index.js",
+  "scripts": {
+    "open": "cypress open --e2e --browser electron"
+  },
+  "keywords": [
+    "cypress",
+    "cypress.io",
+    "cypress-plugin",
+    "voice"
+  ],
+  "devDependencies": {
+    "cypress": "^13.7.1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "author": "Dennis Bergevin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennisbergevin/cypress-voice-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dennisbergevin/cypress-voice-plugin/issues"
+  },
+  "homepage": "https://github.com/dennisbergevin/cypress-voice-plugin#readme"
+}
