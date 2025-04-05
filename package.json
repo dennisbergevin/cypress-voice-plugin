@@ -1,6 +1,6 @@
 {
   "name": "cypress-voice-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Voice plugin for the Cypress Test Runner",
   "main": "./index.js",
   "scripts": {
