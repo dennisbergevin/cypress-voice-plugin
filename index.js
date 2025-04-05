@@ -15,12 +15,14 @@ if (
     addStyles();
   });
 
+  // Used when user navigates away from current spec within the test runner
+  // Stops the voice from continuing
   Cypress.on("window:unload", () => {
     const voice = window.speechSynthesis;
     voice.cancel();
   });
 
-  Cypress.on("test:after:run", (config, test) => {
+  Cypress.on("test:after:run", (_, test) => {
     // Additional context of test index
     // To account for loops where there is one test per describe and suite names may stay
     // And to account for both specs with multiple suites or only one suite
@@ -40,6 +42,8 @@ if (
     // Volume toggle for volume of spoken text
     const volume = window.top?.document.querySelector("#volume");
 
+    // Logic involved with waiting for the restart button to appear
+    // This signals the Cypress Test Runner has completed it's current run
     function waitForElement(selector, callback) {
       const observer = new MutationObserver((mutations, observer) => {
         const element = window.top?.document.querySelector(selector);
@@ -195,11 +199,6 @@ if (
 
     if (currentTestIsLast) {
       waitForElement(".restart", () => {
-        // Perform actions on the element
-        // Additional context of test index
-        // To account for loops where there is one test per describe and suite names may stay
-        // And to account for both specs with multiple suites or only one suite
-
         // Announce spec run result and/or total time based on provided environment variable(s)
         if (
           Cypress.env("voiceResultType") === "simple" &&
