@@ -39,16 +39,16 @@ import "cypress-voice-plugin";
 
 ## 🦺 Setup
 
-Within `cypress open`, the voice plugin is enabled via a [Cypress environment variable](https://docs.cypress.io/guides/guides/environment-variables).
+Within `cypress open`, beginning in plugin version `2.0.0`, the voice plugin is enabled via a [Cypress expose variable](https://docs.cypress.io/api/cypress-api/expose).
 
 > [!NOTE]  
 > You can only enable a single value for `voiceResultType` at a time. `voiceResultType` and/or `voiceTime` can be enabled together or independently.
 
-| Environment variable | Value        | Can this variable alone enable plugin? | Purpose                                                                                                             | Sample Spoken Result                                          |
-| -------------------- | ------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `voiceResultType`    | `"simple"`   | ✅ Yes                                 | High-level result of entire spec file run.                                                                          | "Spec passed."                                                |
-| `voiceResultType`    | `"detailed"` | ✅ Yes                                 | In addition to what is provided by `"simple"`, the counts of tests passed, passed with retries, failed and skipped. | "Spec failed: 1 test passed, 2 tests failed, 1 test skipped." |
-| `voiceTime`          | `true`       | ✅ Yes                                 | The time of entire spec file run.                                                                                   | "Total time: 34 seconds"                                      |
+| Expose variable   | Value        | Can this variable alone enable plugin? | Purpose                                                                                                             | Sample Spoken Result                                          |
+| ----------------- | ------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `voiceResultType` | `"simple"`   | ✅ Yes                                 | High-level result of entire spec file run.                                                                          | "Spec passed."                                                |
+| `voiceResultType` | `"detailed"` | ✅ Yes                                 | In addition to what is provided by `"simple"`, the counts of tests passed, passed with retries, failed and skipped. | "Spec failed: 1 test passed, 2 tests failed, 1 test skipped." |
+| `voiceTime`       | `true`       | ✅ Yes                                 | The time of entire spec file run.                                                                                   | "Total time: 34 seconds"                                      |
 
 ## 🏃‍♀️ Voice adjustments
 
@@ -64,42 +64,38 @@ As the plugin does not set a language itself, [`speechSynthesis` is able to dete
 
 > If unset, the app's (i.e. the <html> lang value) lang will be used, or the user-agent default if that is unset too.
 
-## 📕 Example Environment Variable Setups
+## 📕 Example Expose Variable Setups
 
-The following options are suggestions of how to set the environment variable(s). A more comprehensive [guide on environment variable setting](https://docs.cypress.io/guides/guides/environment-variables#Setting) can be found within official Cypress documentation.
+The following options are suggestions of how to set the expose variable(s). A more comprehensive [guide on environment variable setting](https://docs.cypress.io/api/cypress-api/expose#Examples) can be found within official Cypress documentation.
 
-### Setup using `cypress.env.json`
+### Setup using configuration file
 
-Add environment variable(s) to a created `cypress.env.json` file.
+Add environment variable(s) to your Cypress configuration file.
 
 Example:
 
 ```js
-{
+expose: {
   "voiceTime": true,
   "voiceResultType": "detailed",
 }
 ```
 
-This is a useful method for handling local use of this plugin, particularly if you add `cypress.env.json` to your `.gitignore` file. This way, enabling the plugin functionality via environment variable can be different for each developer machine rather than committed to the remote repository.
+### Setup using `--expose`
 
-From official Cypress docs, more information on the [`cypress.env.json` method](https://docs.cypress.io/guides/guides/environment-variables#Option-2-cypressenvjson).
-
-### Setup using `--env`
-
-Alternatively, append the environment variable to the end of your `cypress open` cli command:
+Alternatively, append the expose variable to the end of your `cypress open` cli command:
 
 ```shell
-npx cypress open --env voiceResultType=simple
+npx cypress open --expose voiceResultType=simple
 ```
 
 Or, combine multiple variables in one command to hear both result and total run time:
 
 ```shell
-npx cypress open --env voiceResultType=detailed,voiceTime=true
+npx cypress open --expose voiceResultType=detailed,voiceTime=true
 ```
 
-From official Cypress docs, more information on the [`--env` method](https://docs.cypress.io/guides/guides/environment-variables#Option-4---env).
+From official Cypress docs, more information on the [`--expose` method](https://docs.cypress.io/api/cypress-api/expose#CLI-Flags).
 
 ## TODO
 

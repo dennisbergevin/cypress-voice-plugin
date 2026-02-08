@@ -4,13 +4,13 @@
 describe("Voice time", () => {
   it(
     "Announces short passing test with only time",
-    { env: { voiceTime: true, voiceResultType: false } },
+    { expose: { voiceTime: true, voiceResultType: false } },
     () => {
       const synth = window.speechSynthesis;
       synth.speak = (event) => {
         const text = event.text;
         expect(text).to.eq("Total time: Less than 1 second.");
       };
-    }
+    },
   );
 });

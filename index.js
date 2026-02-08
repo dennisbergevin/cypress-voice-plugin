@@ -2,9 +2,9 @@ import { addStyles } from "./addStyles";
 
 // Voice plugin to announce spec result when Cypress runner UI is open (cypress open)
 if (
-  (Cypress.env("voiceResultType") === "simple" ||
-    Cypress.env("voiceResultType") === "detailed" ||
-    Cypress.env("voiceTime")) &&
+  (Cypress.expose("voiceResultType") === "simple" ||
+    Cypress.expose("voiceResultType") === "detailed" ||
+    Cypress.expose("voiceTime")) &&
   Cypress.config("isInteractive")
 ) {
   // Cancel any ongoing spoken results when a new spec is selected mid-speech
@@ -199,10 +199,10 @@ if (
 
     if (currentTestIsLast) {
       waitForElement(".restart", () => {
-        // Announce spec run result and/or total time based on provided environment variable(s)
+        // Announce spec run result and/or total time based on provided Cypress.expose() variable(s)
         if (
-          Cypress.env("voiceResultType") === "simple" &&
-          !Cypress.env("voiceTime")
+          Cypress.expose("voiceResultType") === "simple" &&
+          !Cypress.expose("voiceTime")
         ) {
           const message = new SpeechSynthesisUtterance(
             `Spec ${
@@ -214,9 +214,9 @@ if (
           message.volume = volume.value;
           speechSynthesis.speak(message);
         } else if (
-          Cypress.env("voiceTime") &&
-          !(Cypress.env("voiceResultType") === "simple") &&
-          !(Cypress.env("voiceResultType") === "detailed")
+          Cypress.expose("voiceTime") &&
+          !(Cypress.expose("voiceResultType") === "simple") &&
+          !(Cypress.expose("voiceResultType") === "detailed")
         ) {
           const message = new SpeechSynthesisUtterance(
             "Total time: " + specTime(),
@@ -226,8 +226,8 @@ if (
           message.volume = volume.value;
           speechSynthesis.speak(message);
         } else if (
-          Cypress.env("voiceResultType") === "detailed" &&
-          !Cypress.env("voiceTime")
+          Cypress.expose("voiceResultType") === "detailed" &&
+          !Cypress.expose("voiceTime")
         ) {
           const message = new SpeechSynthesisUtterance(
             `Spec ${
@@ -243,8 +243,8 @@ if (
           message.volume = volume.value;
           speechSynthesis.speak(message);
         } else if (
-          Cypress.env("voiceResultType") === "simple" &&
-          Cypress.env("voiceTime")
+          Cypress.expose("voiceResultType") === "simple" &&
+          Cypress.expose("voiceTime")
         ) {
           const message = new SpeechSynthesisUtterance(
             `Spec ${
@@ -260,8 +260,8 @@ if (
           message.volume = volume.value;
           speechSynthesis.speak(message);
         } else if (
-          Cypress.env("voiceResultType") === "detailed" &&
-          Cypress.env("voiceTime")
+          Cypress.expose("voiceResultType") === "detailed" &&
+          Cypress.expose("voiceTime")
         ) {
           const message = new SpeechSynthesisUtterance(
             `Spec ${
