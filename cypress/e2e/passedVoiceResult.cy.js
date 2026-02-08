@@ -4,7 +4,7 @@
 describe("Passing voice", () => {
   it(
     "Announces passed test",
-    { env: { voiceResultType: "simple", voiceTime: false } },
+    { expose: { voiceResultType: "simple", voiceTime: false } },
     () => {
       const synth = window.speechSynthesis;
       synth.speak = (event) => {
@@ -12,6 +12,6 @@ describe("Passing voice", () => {
 
         expect(char).to.eq("Spec passed.");
       };
-    }
+    },
   );
 });

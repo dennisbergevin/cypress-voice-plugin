@@ -5,7 +5,7 @@ describe("Failing voice", () => {
   it(
     "Announces failed test without time",
     {
-      env: {
+      expose: {
         voiceResultType: "simple",
       },
     },
@@ -25,6 +25,6 @@ describe("Failing voice", () => {
 
         expect(char).to.eq("Spec failed.");
       };
-    }
+    },
   );
 });

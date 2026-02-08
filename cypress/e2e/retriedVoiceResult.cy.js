@@ -6,7 +6,7 @@ describe("Voice on retries", () => {
     "Announces short retried test",
     {
       retries: 1,
-      env: { voiceResultType: "detailed", voiceTime: false },
+      expose: { voiceResultType: "detailed", voiceTime: false },
     },
     () => {
       // this test will fail on first try, but pass on second
@@ -18,10 +18,10 @@ describe("Voice on retries", () => {
         synth.speak = (event) => {
           const text = event.text;
           expect(text).to.eq(
-            "Spec passed with retries: 1 test passed with retries."
+            "Spec passed with retries: 1 test passed with retries.",
           );
         };
       }
-    }
+    },
   );
 });
