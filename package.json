@@ -1,6 +1,6 @@
 {
   "name": "cypress-voice-plugin",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Voice plugin for the Cypress Test Runner",
   "main": "./index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "voice"
   ],
   "devDependencies": {
-    "cypress": "^15.11.0"
+    "cypress": "^15.13.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
